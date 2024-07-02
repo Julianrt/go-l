@@ -66,6 +66,7 @@ func main() {
 	ginEngine.POST("/players", playerHandler.CreatePlayer)
 	ginEngine.DELETE("/players/:id", playerHandler.DeletePlayer)
 
+	ginEngine.GET("/tournaments/:id", tournamentHandler.GetTournament)
 	ginEngine.POST("/tournaments", tournamentHandler.CreateTournament)
 	ginEngine.DELETE("/tournaments/:id", tournamentHandler.DeleteTournament)
 

@@ -19,6 +19,7 @@ var (
 	ErrIncorrectID  = errors.New("incorrect id error")
 	ErrNotFound     = errors.New("record not found error")
 	ErrTimeout      = errors.New("timeout error")
+	ErrInvalidParam = errors.New("invalid parameter error")
 )
 
 // AppError is a custom error type that implements the error interface
@@ -67,6 +68,12 @@ func ManageError(err error, msg string) error {
 		appErr = AppError{
 			Code: ErrCodeTimeout,
 			Msg:  "Timeout",
+		}
+	case errors.Is(err, ErrInvalidParam):
+		log.Println(err.Error())
+		appErr = AppError{
+			Code: ErrCodeInvalidParams,
+			Msg:  "Invalid parameter",
 		}
 	default:
 		log.Println(err.Error())
